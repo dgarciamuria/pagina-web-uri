@@ -3,8 +3,9 @@ import { Client } from "../../prismic";
 import NextLink from "next/link";
 import { RichText, Link } from "prismic-reactjs";
 import { Footer } from "../../src/Footer";
+import { Anuncios } from "../../src/Anuncios";
 
-const Page = ({ videos, hasNext, hasPrev, currentPage }) => {
+const Page = ({ videos, hasNext, hasPrev, currentPage, anuncios }) => {
   return (
     <div className="grid">
       <section class="section-videos">
@@ -74,156 +75,7 @@ const Page = ({ videos, hasNext, hasPrev, currentPage }) => {
           </ul>
         </nav>
 
-        <div class="container text-center my-3">
-          <div class="row mx-auto my-auto">
-            <div
-              id="myCarousel"
-              class="carousel slide w-100"
-              data-ride="carousel"
-            >
-              <div class="carousel-inner" role="listbox">
-                <div class="carousel-item py-5 active">
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <div class="card">
-                        <div class="card-body">
-                          <a href="http://www.osdepym.com.ar/PortalCMS/app.htm">
-                            <img
-                              src="multimedia/osdepym.png"
-                              width="200"
-                              height="70"
-                              alt="logo-osdepym"
-                            />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="card">
-                        <div class="card-body">
-                          <a href="https://farmaciadelpuente.com.ar/">
-                            <img
-                              src="multimedia/farmacia-del-puente.png"
-                              width="200"
-                              height="70"
-                              alt="logo-farmacia-del-puente"
-                            />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item py-5">
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <div class="card">
-                        <div class="card-body">
-                          <a href="http://www.osdepym.com.ar/PortalCMS/app.htm">
-                            <img
-                              src="multimedia/osdepym.png"
-                              width="200"
-                              height="70"
-                              alt="logo-osdepym"
-                            />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="card">
-                        <div class="card-body">
-                          <a href="https://farmaciadelpuente.com.ar/">
-                            <img
-                              src="multimedia/farmacia-del-puente.png"
-                              width="200"
-                              height="70"
-                              alt="logo-farmacia-del-puente"
-                            />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item py-5">
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <div class="card">
-                        <div class="card-body">
-                          <a href="http://www.osdepym.com.ar/PortalCMS/app.htm">
-                            <img
-                              src="multimedia/osdepym.png"
-                              width="200"
-                              height="70"
-                              alt="logo-osdepym"
-                            />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="card">
-                        <div class="card-body">
-                          <a href="https://farmaciadelpuente.com.ar/">
-                            <img
-                              src="multimedia/farmacia-del-puente.png"
-                              width="200"
-                              height="70"
-                              alt="logo-farmacia-del-puente"
-                            />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item py-5">
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <div class="card">
-                        <div class="card-body">
-                          <a href="http://www.osdepym.com.ar/PortalCMS/app.htm">
-                            <img
-                              src="multimedia/osdepym.png"
-                              width="200"
-                              height="70"
-                              alt="logo-osdepym"
-                            />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="card">
-                        <div class="card-body">
-                          <a href="https://farmaciadelpuente.com.ar/">
-                            <img
-                              src="multimedia/farmacia-del-puente.png"
-                              width="200"
-                              height="70"
-                              alt="logo-farmacia-del-puente"
-                            />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <ol class="carousel-indicators">
-                  <li
-                    data-target="#myCarousel"
-                    data-slide-to="0"
-                    class="active"
-                  ></li>
-                  <li data-target="#myCarousel" data-slide-to="1"></li>
-                  <li data-target="#myCarousel" data-slide-to="2"></li>
-                  <li data-target="#myCarousel" data-slide-to="3"></li>
-                </ol>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Anuncios anuncios={anuncios} />
       </section>
       <Footer />
     </div>
@@ -246,6 +98,8 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params = {} }) => {
+  const anunciosPage = await Client().getSingle("anuncios");
+  const anuncios = extractSliceData(anunciosPage.data, "anuncios");
   const { page: pageOffset } = params;
   const page = await Client().getSingle("videos");
   const { data } = page;
@@ -257,6 +111,7 @@ export const getStaticProps = async ({ params = {} }) => {
 
   return {
     props: {
+      anuncios,
       currentPage,
       videos,
       hasNext,

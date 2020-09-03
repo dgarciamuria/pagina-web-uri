@@ -1,6 +1,10 @@
-const { Footer } = require("../src/Footer");
+import { Client } from "../prismic";
+import { extractSliceData } from "../src/utils";
 
-const Page = () => (
+const { Footer } = require("../src/Footer");
+const { Anuncios } = require("../src/Anuncios");
+
+const Page = ({ anuncios }) => (
   <div className="grid">
     <section className="section-osdepym">
       <h4 className="section-osdepym-titulo">
@@ -136,284 +140,20 @@ const Page = () => (
       >
         <img src="/osdepym.png" width="200" height="50" alt="osdepym" />
       </a>
-
-      <div className="container text-center my-3">
-        <div className="row mx-auto my-auto">
-          <div
-            id="myCarousel"
-            className="carousel slide w-100"
-            data-ride="carousel"
-          >
-            <div className="carousel-inner" role="listbox">
-              <div className="carousel-item py-5 active">
-                <div className="row">
-                  <div id="card-1" className="col-sm-4">
-                    <div className="card">
-                      <div className="card-body">
-                        <a href="#">
-                          <img
-                            src="/2.jpg"
-                            width="250"
-                            height="200"
-                            alt="logo-osdepym"
-                          />
-                        </a>
-                        <h4 className="card-body--titulo">
-                          Alimentos: cómo garantizar su seguridad durante la
-                          pandemia.
-                        </h4>
-
-                        <button
-                          type="button"
-                          id="boton-leer-mas"
-                          className="btn btn-danger"
-                          data-dismiss="modal"
-                        >
-                          + Info
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-sm-4">
-                    <div id="card-2" className="card">
-                      <div className="card-body">
-                        <a href="#">
-                          <img
-                            src="/3.jpg"
-                            width="250"
-                            height="200"
-                            alt="logo-farmacia-del-puente"
-                          />
-                        </a>
-                        <h4 className="card-body--titulo">
-                          Salud mental de niños y adolescentes en pandemia.
-                        </h4>
-
-                        <button
-                          type="button"
-                          id="boton-leer-mas"
-                          className="btn btn-danger"
-                          data-dismiss="modal"
-                        >
-                          + Info
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div id="card-3" className="col-sm-4">
-                    <div className="card">
-                      <div className="card-body">
-                        <a href="#">
-                          <img
-                            src="/7.jpg"
-                            width="250"
-                            height="200"
-                            alt="logo-farmacia-del-puente"
-                          />
-                        </a>
-                        <h4 className="card-body--titulo">
-                          ¿Cuál es el riesgo para los hipertensos?
-                        </h4>
-
-                        <button
-                          type="button"
-                          id="boton-leer-mas"
-                          className="btn btn-danger"
-                          data-dismiss="modal"
-                        >
-                          + Info
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="carousel-item py-5">
-                <div className="row">
-                  <div id="card-1" className="col-sm-4">
-                    <div className="card">
-                      <div className="card-body">
-                        <iframe
-                          width="250"
-                          height="200"
-                          src="https://www.youtube.com/embed/_JDOGSkVMNY"
-                          frameborder="0"
-                          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                          allowfullscreen
-                        ></iframe>
-                        <h4 className="card-body--titulo">
-                          Cuerpo y mente saludable - Tips de Salud.
-                        </h4>
-                        <a href="https://www.youtube.com/embed/_JDOGSkVMNY">
-                          <button
-                            type="button"
-                            id="boton-leer-mas"
-                            className="btn btn-danger"
-                            data-dismiss="modal"
-                          >
-                            + Info
-                          </button>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div id="card-2" className="col-sm-4">
-                    <div className="card">
-                      <div className="card-body">
-                        <iframe
-                          width="250"
-                          height="200"
-                          src="https://www.youtube.com/embed/KF4be_6uLLI"
-                          frameborder="0"
-                          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                          allowfullscreen
-                        ></iframe>
-                        <h4 className="card-body--titulo">
-                          Sanos en casa durante la pandemia de COVID-19
-                        </h4>
-                        <a href="https://www.youtube.com/embed/KF4be_6uLLI">
-                          <button
-                            type="button"
-                            id="boton-leer-mas"
-                            className="btn btn-danger"
-                            data-dismiss="modal"
-                          >
-                            + Info
-                          </button>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div id="card-3" className="col-sm-4">
-                    <div className="card">
-                      <div className="card-body">
-                        <iframe
-                          width="250"
-                          height="200"
-                          src="https://www.youtube.com/embed/8cIhYlwNp8A"
-                          frameborder="0"
-                          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                          allowfullscreen
-                        ></iframe>
-                        <h4 className="card-body--titulo">
-                          Consejos para enfrentar el estrés ante la pandemia por
-                          COVID-19
-                        </h4>
-                        <a href="https://www.youtube.com/embed/8cIhYlwNp8A">
-                          <button
-                            type="button"
-                            id="boton-leer-mas"
-                            className="btn btn-danger"
-                            data-dismiss="modal"
-                          >
-                            + Info
-                          </button>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="carousel-item py-5">
-                <div className="row">
-                  <div id="card-1" className="col-sm-4">
-                    <div className="card">
-                      <div className="card-body">
-                        <a href="#">
-                          <img
-                            src="/4.jpg"
-                            width="250"
-                            height="200"
-                            alt="logo-osdepym"
-                          />
-                        </a>
-                        <h4 className="card-body--titulo">
-                          Verano caliente: temperaturas más altas que lo
-                          habitual.
-                        </h4>
-
-                        <button
-                          type="button"
-                          id="boton-leer-mas"
-                          className="btn btn-danger"
-                          data-dismiss="modal"
-                        >
-                          + Info
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div id="card-2" className="col-sm-4">
-                    <div className="card">
-                      <div className="card-body">
-                        <a href="#">
-                          <img
-                            src="/6.jpg"
-                            width="250"
-                            height="200"
-                            alt="logo-farmacia-del-puente"
-                          />
-                        </a>
-                        <h4 className="card-body--titulo">
-                          ¿Cansado de los ronquidos? 10 recomendaciones.
-                        </h4>
-
-                        <button
-                          type="button"
-                          id="boton-leer-mas"
-                          className="btn btn-danger"
-                          data-dismiss="modal"
-                        >
-                          + Info
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div id="card-3" className="col-sm-4">
-                    <div className="card">
-                      <div className="card-body">
-                        <a href="#">
-                          <img
-                            src="/5.jpg"
-                            width="250"
-                            height="200"
-                            alt="logo-osdepym"
-                          />
-                        </a>
-                        <h4 className="card-body--titulo">
-                          Coronavirus: ¿Sirve el plasma de pacientes
-                          recuperados?
-                        </h4>
-
-                        <button
-                          type="button"
-                          id="boton-leer-mas"
-                          className="btn btn-danger"
-                          data-dismiss="modal"
-                        >
-                          + Info
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <ol className="carousel-indicators">
-                <li
-                  data-target="#myCarousel"
-                  data-slide-to="0"
-                  className="active"
-                ></li>
-                <li data-target="#myCarousel" data-slide-to="1"></li>
-                <li data-target="#myCarousel" data-slide-to="2"></li>
-              </ol>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
     <Footer />
   </div>
 );
+
+export const getStaticProps = async () => {
+  const page = await Client().getSingle("anuncios");
+  const anuncios = extractSliceData(page.data, "anuncios");
+  return {
+    props: {
+      anuncios,
+    },
+    revalidate: 30,
+  };
+};
 
 export default Page;

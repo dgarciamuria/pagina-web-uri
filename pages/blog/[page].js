@@ -4,8 +4,9 @@ import NextLink from "next/link";
 import { RichText, Date as PDate } from "prismic-reactjs";
 import { Footer } from "../../src/Footer";
 import Link from "next/link";
+import { Anuncios } from "../../src/Anuncios";
 
-const Page = ({ posteos, hasNext, hasPrev, currentPage }) => {
+const Page = ({ posteos, hasNext, hasPrev, currentPage, anuncios }) => {
   return (
     <div className="grid">
       <section className="section-blog">
@@ -13,7 +14,19 @@ const Page = ({ posteos, hasNext, hasPrev, currentPage }) => {
         <h3 className="section-blog-titulo-2">Blog</h3>
         {posteos.map(({ titulo1, imagen, descripcion, fecha }, idx) => (
           <div key={`${idx}`} className="section-blog-contenido--articulo">
-            <img className="section-blog-contenido--imagen" src={imagen.url} />
+            <Link
+              href="/blog/detalle/[name]"
+              as={`/blog/detalle/${RichText.asText(titulo1)
+                .toLowerCase()
+                .replace(/\s/g, "-")}`}
+            >
+              <a>
+                <img
+                  className="section-blog-contenido--imagen"
+                  src={imagen.url}
+                />
+              </a>
+            </Link>
             <div className="section-blog-contenido--texto">
               <h6 className="blog-articulo-redes--fecha">
                 {PDate(fecha).toLocaleDateString()}
@@ -92,156 +105,7 @@ const Page = ({ posteos, hasNext, hasPrev, currentPage }) => {
           </ul>
         </nav>
 
-        <div className="container text-center my-3">
-          <div className="row mx-auto my-auto">
-            <div
-              id="myCarousel"
-              className="carousel slide w-100"
-              data-ride="carousel"
-            >
-              <div className="carousel-inner" role="listbox">
-                <div className="carousel-item py-5 active">
-                  <div className="row">
-                    <div className="col-sm-6">
-                      <div className="card">
-                        <div className="card-body">
-                          <a href="http://www.osdepym.com.ar/PortalCMS/app.htm">
-                            <img
-                              src="/osdepym.png"
-                              width="200"
-                              height="70"
-                              alt="logo-osdepym"
-                            />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-sm-6">
-                      <div className="card">
-                        <div className="card-body">
-                          <a href="https://farmaciadelpuente.com.ar/">
-                            <img
-                              src="/farmacia-del-puente.png"
-                              width="200"
-                              height="70"
-                              alt="logo-farmacia-del-puente"
-                            />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="carousel-item py-5">
-                  <div className="row">
-                    <div className="col-sm-6">
-                      <div className="card">
-                        <div className="card-body">
-                          <a href="http://www.osdepym.com.ar/PortalCMS/app.htm">
-                            <img
-                              src="/osdepym.png"
-                              width="200"
-                              height="70"
-                              alt="logo-osdepym"
-                            />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-sm-6">
-                      <div className="card">
-                        <div className="card-body">
-                          <a href="https://farmaciadelpuente.com.ar/">
-                            <img
-                              src="/farmacia-del-puente.png"
-                              width="200"
-                              height="70"
-                              alt="logo-farmacia-del-puente"
-                            />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="carousel-item py-5">
-                  <div className="row">
-                    <div className="col-sm-6">
-                      <div className="card">
-                        <div className="card-body">
-                          <a href="http://www.osdepym.com.ar/PortalCMS/app.htm">
-                            <img
-                              src="/osdepym.png"
-                              width="200"
-                              height="70"
-                              alt="logo-osdepym"
-                            />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-sm-6">
-                      <div className="card">
-                        <div className="card-body">
-                          <a href="https://farmaciadelpuente.com.ar/">
-                            <img
-                              src="/farmacia-del-puente.png"
-                              width="200"
-                              height="70"
-                              alt="logo-farmacia-del-puente"
-                            />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="carousel-item py-5">
-                  <div className="row">
-                    <div className="col-sm-6">
-                      <div className="card">
-                        <div className="card-body">
-                          <a href="http://www.osdepym.com.ar/PortalCMS/app.htm">
-                            <img
-                              src="/osdepym.png"
-                              width="200"
-                              height="70"
-                              alt="logo-osdepym"
-                            />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-sm-6">
-                      <div className="card">
-                        <div className="card-body">
-                          <a href="https://farmaciadelpuente.com.ar/">
-                            <img
-                              src="/farmacia-del-puente.png"
-                              width="200"
-                              height="70"
-                              alt="logo-farmacia-del-puente"
-                            />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <ol className="carousel-indicators">
-                  <li
-                    data-target="#myCarousel"
-                    data-slide-to="0"
-                    className="active"
-                  ></li>
-                  <li data-target="#myCarousel" data-slide-to="1"></li>
-                  <li data-target="#myCarousel" data-slide-to="2"></li>
-                  <li data-target="#myCarousel" data-slide-to="3"></li>
-                </ol>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Anuncios anuncios={anuncios} />
       </section>
 
       <Footer />
@@ -265,6 +129,8 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params = {} }) => {
+  const anunciosPage = await Client().getSingle("anuncios");
+  const anuncios = extractSliceData(anunciosPage.data, "anuncios");
   const { page: pageOffset } = params;
   const page = await Client().getSingle("blog");
   const { data } = page;
@@ -281,6 +147,7 @@ export const getStaticProps = async ({ params = {} }) => {
       posteos,
       hasNext,
       hasPrev,
+      anuncios,
     },
     revalidate: 30,
   };
