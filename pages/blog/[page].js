@@ -3,6 +3,7 @@ import { Client } from "../../prismic";
 import NextLink from "next/link";
 import { RichText, Date as PDate } from "prismic-reactjs";
 import { Footer } from "../../src/Footer";
+import Link from "next/link";
 
 const Page = ({ posteos, hasNext, hasPrev, currentPage }) => {
   return (
@@ -17,9 +18,18 @@ const Page = ({ posteos, hasNext, hasPrev, currentPage }) => {
               <h6 className="blog-articulo-redes--fecha">
                 {PDate(fecha).toLocaleDateString()}
               </h6>
-              <h4 className="blog-articulo-titulo">
-                {RichText.asText(titulo1)}
-              </h4>
+              <Link
+                href="/blog/detalle/[name]"
+                as={`/blog/detalle/${RichText.asText(titulo1)
+                  .toLowerCase()
+                  .replace(/\s/g, "-")}`}
+              >
+                <a class="blog-articulo-titulo">
+                  <h4 className="blog-articulo-titulo">
+                    {RichText.asText(titulo1)}
+                  </h4>
+                </a>
+              </Link>
               <p className="blog-articulo-texto">
                 {RichText.asText(descripcion)}
               </p>
