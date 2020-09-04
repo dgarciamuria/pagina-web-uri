@@ -33,7 +33,6 @@ const Index = ({ page }) => {
 
               <div className="modal-body">
                 <form
-                  form
                   action="https://formsubmit.co/pedro@uridesarrollos.com.ar"
                   method="POST"
                   className="speaker-form content"
@@ -57,13 +56,13 @@ const Index = ({ page }) => {
                   <input type="hidden" name="_captcha" value="false" />
                   <ul className="form">
                     <li>
-                      <label for="nombre">Nombre y Apellido:</label>
+                      <label htmlFor="nombre">Nombre y Apellido:</label>
                     </li>
                     <li>
                       <input type="text" name="name" required />
                     </li>
                     <li>
-                      <label for="fecha de nacimiento">
+                      <label htmlFor="fecha de nacimiento">
                         Fecha de nacimiento:
                       </label>
                     </li>
@@ -71,25 +70,25 @@ const Index = ({ page }) => {
                       <input type="text" name="fecha de nacimiento" required />
                     </li>
                     <li>
-                      <label for="domicilio">Domicilio:</label>
+                      <label htmlFor="domicilio">Domicilio:</label>
                     </li>
                     <li>
                       <input type="text" name="domicilio" required />
                     </li>
                     <li>
-                      <label for="actividad">Actividad:</label>
+                      <label htmlFor="actividad">Actividad:</label>
                     </li>
                     <li>
                       <input type="text" name="actividad" required />
                     </li>
                     <li>
-                      <label for="email">Email:</label>
+                      <label htmlFor="email">Email:</label>
                     </li>
                     <li>
                       <input type="email" name="email" required />
                     </li>
                     <li>
-                      <label for="tel">WhatsApp:</label>
+                      <label htmlFor="tel">WhatsApp:</label>
                     </li>
                     <li>
                       <input type="tel" name="phone" required />

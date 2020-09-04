@@ -4,30 +4,36 @@ import NextLink from "next/link";
 import { RichText, Link } from "prismic-reactjs";
 import { Footer } from "../../src/Footer";
 import { Anuncios } from "../../src/Anuncios";
+import Head from "next/head";
 
 const Page = ({ videos, hasNext, hasPrev, currentPage, anuncios }) => {
   return (
     <div className="grid">
-      <section class="section-videos">
-        <h4 class="section-blog-titulo">Salud</h4>
-        <h3 class="section-blog-titulo-2">Videos</h3>
+      <Head>
+        <title>UriVida|Salud|Videos</title>
+      </Head>
+      <section className="section-videos">
+        <h4 className="section-blog-titulo">Salud</h4>
+        <h3 className="section-blog-titulo-2">Videos</h3>
         {videos.map(({ titulo, link }, idx) => (
-          <div key={`${idx}`} class="card-body-videos">
+          <div key={`${idx}`} className="card-body-videos">
             <iframe
-              class="card-body-videos--video"
+              className="card-body-videos--video"
               width="250"
               height="140"
               src={Link.url(link)}
-              frameborder="0"
+              frameBorder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
+              allowFullScreen
             ></iframe>
-            <h4 class="card-body-videos--titulo">{RichText.asText(titulo)}</h4>
+            <h4 className="card-body-videos--titulo">
+              {RichText.asText(titulo)}
+            </h4>
             <a href={Link.url(link)}>
               <button
                 type="button"
                 id="boton-leer-mas"
-                class="btn btn-danger"
+                className="btn btn-danger"
                 data-dismiss="modal"
               >
                 Ir al video

@@ -5,10 +5,14 @@ import { RichText, Date as PDate } from "prismic-reactjs";
 import { Footer } from "../../src/Footer";
 import Link from "next/link";
 import { Anuncios } from "../../src/Anuncios";
+import Head from "next/head";
 
 const Page = ({ posteos, hasNext, hasPrev, currentPage, anuncios }) => {
   return (
     <div className="grid">
+      <Head>
+        <title>UriVida|Salud|Blog</title>
+      </Head>
       <section className="section-blog">
         <h4 className="section-blog-titulo">Salud</h4>
         <h3 className="section-blog-titulo-2">Blog</h3>
@@ -37,7 +41,7 @@ const Page = ({ posteos, hasNext, hasPrev, currentPage, anuncios }) => {
                   .toLowerCase()
                   .replace(/\s/g, "-")}`}
               >
-                <a class="blog-articulo-titulo">
+                <a className="blog-articulo-titulo">
                   <h4 className="blog-articulo-titulo">
                     {RichText.asText(titulo1)}
                   </h4>

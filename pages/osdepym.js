@@ -1,11 +1,16 @@
 import { Client } from "../prismic";
 import { extractSliceData } from "../src/utils";
+import Head from "next/head";
 
-const { Footer } = require("../src/Footer");
-const { Anuncios } = require("../src/Anuncios");
+import { Footer } from "../src/Footer";
+import { Anuncios } from "../src/Anuncios";
+import { Novedades } from "../src/Novedades";
 
-const Page = ({ anuncios }) => (
+const Page = ({ anuncios, novedades }) => (
   <div className="grid">
+    <Head>
+      <title>UriVida|Osdepym</title>
+    </Head>
     <section className="section-osdepym">
       <h4 className="section-osdepym-titulo">
         <img src="/osdepym.png" alt="logo-osdepym" width="200" height="50" />
@@ -13,7 +18,6 @@ const Page = ({ anuncios }) => (
 
       <h4 className="h4-form-osdepym">Solicita Asesor de Ventas</h4>
       <form
-        form
         action="https://formsubmit.co/pedro@uridesarrollos.com.ar"
         method="POST"
         className="speaker-form content"
@@ -34,7 +38,7 @@ const Page = ({ anuncios }) => (
 
         <div className="form-group">
           <div className="form-group-1">
-            <label className="form-text" for="nombre">
+            <label className="form-text" htmlFor="nombre">
               Nombre y Apellido
             </label>
             <input
@@ -44,7 +48,7 @@ const Page = ({ anuncios }) => (
               required
             />
 
-            <label className="form-text" for="fecha de nacimiento">
+            <label className="form-text" htmlFor="fecha de nacimiento">
               Fecha de nac.
             </label>
             <input
@@ -54,7 +58,7 @@ const Page = ({ anuncios }) => (
               required
             />
 
-            <label className="form-text" for="domicilio">
+            <label className="form-text" htmlFor="domicilio">
               Domicilio
             </label>
             <input
@@ -64,7 +68,7 @@ const Page = ({ anuncios }) => (
               required
             />
 
-            <label className="form-text" for="provincia">
+            <label className="form-text" htmlFor="provincia">
               Provincia
             </label>
             <input
@@ -74,7 +78,7 @@ const Page = ({ anuncios }) => (
               required
             />
 
-            <label className="form-text" for="ciudad">
+            <label className="form-text" htmlFor="ciudad">
               Ciudad
             </label>
             <input
@@ -85,7 +89,7 @@ const Page = ({ anuncios }) => (
             />
           </div>
           <div className="form-group-2">
-            <label className="form-text" for="prepaga">
+            <label className="form-text" htmlFor="prepaga">
               Prepaga Actual
             </label>
             <input
@@ -95,12 +99,16 @@ const Page = ({ anuncios }) => (
               required
             />
 
-            <label className="form-text" className="form-text" for="telefono">
+            <label
+              className="form-text"
+              className="form-text"
+              htmlFor="telefono"
+            >
               Teléfono
             </label>
             <input type="tel" name="phone" className="form-control" required />
 
-            <label className="form-text" for="email">
+            <label className="form-text" htmlFor="email">
               Email{" "}
             </label>
             <input
@@ -110,7 +118,7 @@ const Page = ({ anuncios }) => (
               required
             />
 
-            <label className="form-text" for="exampleFormControlTextarea1">
+            <label className="form-text" htmlFor="exampleFormControlTextarea1">
               Deja tu consulta
             </label>
             <textarea
@@ -140,16 +148,20 @@ const Page = ({ anuncios }) => (
       >
         <img src="/osdepym.png" width="200" height="50" alt="osdepym" />
       </a>
+      <Novedades publicidad={novedades} />
     </section>
     <Footer />
   </div>
 );
 
 export const getStaticProps = async () => {
+  const homePage = await Client().getSingle("home_page");
+  const novedades = extractSliceData(homePage.data, "publicidad");
   const page = await Client().getSingle("anuncios");
   const anuncios = extractSliceData(page.data, "anuncios");
   return {
     props: {
+      novedades,
       anuncios,
     },
     revalidate: 30,

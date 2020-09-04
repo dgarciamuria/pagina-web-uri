@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { RichText, Date as PDate } from "prismic-reactjs";
 import { useRouter } from "next/router";
 import { Client } from "../../../prismic";
@@ -9,6 +10,9 @@ const Page = ({ post, anuncios }) => {
   const router = useRouter();
   return (
     <div className="grid">
+      <Head>
+        <title>UriVida|Salud|Blog</title>
+      </Head>
       <section className="section-articulo">
         <h4 className="section-blog-titulo">Salud</h4>
         <div className="section-articulo-contenido--texto">
