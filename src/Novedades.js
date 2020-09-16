@@ -1,7 +1,7 @@
 import { RichText, Link } from "prismic-reactjs";
 
-export const Novedades = ({ publicidad }) => {
-  const publicidadSections = Array(publicidad.length / 3).fill(1);
+export const Novedades = ({ publicidad = [] }) => {
+  const publicidadSections = Array(Math.ceil(publicidad.length / 3)).fill(1);
   return (
     <div className="container text-center my-3">
       <div className="row mx-auto my-auto">
