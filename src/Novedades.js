@@ -50,7 +50,12 @@ export const Novedades = ({ publicidad = [] }) => {
                                   {RichText.asText(titulo)}
                                 </h4>
                                 <p className="card-body--texto">
-                                  {RichText.asText(descripcion)}
+                                  {RichText.asText(descripcion).length > 450
+                                    ? `${RichText.asText(descripcion).substr(
+                                        0,
+                                        450
+                                      )}...`
+                                    : RichText.asText(descripcion)}
                                 </p>
                                 {Link.url(link) ? (
                                   <a href={Link.url(link)} target="_blank">

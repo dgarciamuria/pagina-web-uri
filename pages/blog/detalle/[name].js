@@ -68,17 +68,27 @@ const Page = ({ post, anuncios }) => {
   );
 };
 
+const encodeString = (stringValue) => {
+  return encodeURI(stringValue);
+};
+
+const encodeBlog = (blog) => {
+  return encodeString(RichText.asText(blog).toLowerCase().replace(/\s/g, "-"));
+};
+
 export const getStaticPaths = async () => {
   const page = await Client().getSingle("blog");
   const { data } = page;
   const posteos = extractSliceData(data, "posteos");
 
   return {
-    paths: posteos.map(({ titulo1 }) => ({
-      params: {
-        name: RichText.asText(titulo1).toLowerCase().replace(/\s/g, "-"),
-      },
-    })),
+    paths: posteos.map(({ titulo1 }) => {
+      return {
+        params: {
+          name: encodeBlog(titulo1),
+        },
+      };
+    }),
     fallback: false,
   };
 };
@@ -90,9 +100,9 @@ export const getStaticProps = async ({ params = {} }) => {
   const page = await Client().getSingle("blog");
   const { data } = page;
   const allPosts = extractSliceData(data, "posteos");
+  console.log(name);
   const post = allPosts.find(
-    (post) =>
-      RichText.asText(post.titulo1).toLowerCase().replace(/\s/g, "-") === name
+    (post) => encodeBlog(post.titulo1) === encodeString(name)
   );
 
   return {

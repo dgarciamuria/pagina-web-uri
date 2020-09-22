@@ -48,7 +48,9 @@ const Page = ({ posteos, hasNext, hasPrev, currentPage, anuncios }) => {
                 </a>
               </Link>
               <p className="blog-articulo-texto">
-                {RichText.asText(descripcion)}
+                {RichText.asText(descripcion).length > 450
+                  ? `${RichText.asText(descripcion).substr(0, 450)}...`
+                  : RichText.asText(descripcion)}
               </p>
 
               {/* <hr className="blog-articulo-redes--linea" />
