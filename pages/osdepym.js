@@ -1,12 +1,10 @@
-import { Client } from "../prismic";
-import { extractSliceData } from "../src/utils";
 import Head from "next/head";
-
+import { Client } from "../prismic";
 import { Footer } from "../src/Footer";
-import { Anuncios } from "../src/Anuncios";
 import { Novedades } from "../src/Novedades";
+import { extractSliceData } from "../src/utils";
 
-const Page = ({ anuncios, novedades }) => (
+const Page = ({ anuncios, latestPosts, latestVideos }) => (
   <div className="grid">
     <Head>
       <title>UriVida|Osdepym</title>
@@ -148,20 +146,25 @@ const Page = ({ anuncios, novedades }) => (
       >
         <img src="/osdepym.png" width="200" height="50" alt="osdepym" />
       </a>
-      <Novedades publicidad={novedades} />
+      <Novedades blogs={latestPosts} videos={latestVideos} />
     </section>
     <Footer />
   </div>
 );
 
 export const getStaticProps = async () => {
-  const homePage = await Client().getSingle("home_page");
-  const novedades = extractSliceData(homePage.data, "publicidad");
+  const blogPage = await Client().getSingle("blog");
+  const { data: blogData } = blogPage;
+  const latestPosts = extractSliceData(blogData, "posteos").slice(0, 3);
+  const videoPage = await Client().getSingle("videos");
+  const { data: videoData } = videoPage;
+  const latestVideos = extractSliceData(videoData, "videos").slice(0, 3);
   const page = await Client().getSingle("anuncios");
   const anuncios = extractSliceData(page.data, "anuncios");
   return {
     props: {
-      novedades,
+      latestPosts,
+      latestVideos,
       anuncios,
     },
     revalidate: 30,
