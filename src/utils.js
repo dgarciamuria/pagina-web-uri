@@ -13,7 +13,3 @@ export const encodeString = (stringValue) => {
 export const encodeBlog = (blog) => {
   return encodeString(RichText.asText(blog).toLowerCase().replace(/\s/g, "-"));
 };
-
-export const encodeVideo = (video) => {
-  return encodeString(RichText.asText(video).toLowerCase().replace(/\s/g, "-"));
-};

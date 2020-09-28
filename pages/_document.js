@@ -1,6 +1,5 @@
 import Document, { Html, Main, NextScript, Head } from "next/document";
 import { Nav } from "../src/Nav";
-// import { Head } from "../src/Head";
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {

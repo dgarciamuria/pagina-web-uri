@@ -1,6 +1,7 @@
 import { RichText, Link } from "prismic-reactjs";
 import NextLink from "next/link";
 import { BlogCard } from "./BlogCard";
+import { VideoCard } from "./VideoCard";
 
 export const Novedades = ({ blogs = [], videos = [] }) => {
   const blogEntries = blogs.map((blog) => ({ ...blog, type: "blog" }));
@@ -44,7 +45,9 @@ export const Novedades = ({ blogs = [], videos = [] }) => {
                           >
                             {element.type === "blog" ? (
                               <BlogCard blog={element} />
-                            ) : null}
+                            ) : (
+                              <VideoCard video={element} />
+                            )}
                           </div>
                         );
                         return card;

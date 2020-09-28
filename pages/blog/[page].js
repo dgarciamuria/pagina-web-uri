@@ -33,7 +33,7 @@ const Page = ({ posteos, hasNext, hasPrev, currentPage, anuncios }) => {
             </Link>
             <div className="section-blog-contenido--texto">
               <h6 className="blog-articulo-redes--fecha">
-                {PDate(fecha).toLocaleDateString()}
+                {PDate(fecha ?? new Date()).toLocaleDateString()}
               </h6>
               <Link
                 href="/blog/detalle/[name]"

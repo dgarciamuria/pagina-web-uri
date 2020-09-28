@@ -5,9 +5,9 @@ import { encodeBlog } from "./utils";
 export const BlogCard = (blog) => {
   const { titulo1, imagen, descripcion } = blog.blog;
   return (
-    <div className="card">
+    <div className="card" style={{ height: "100%" }}>
       <div className="card-body">
-        <NextLink href={encodeBlog(titulo1)}>
+        <NextLink href={`blog/detalle/${encodeBlog(titulo1)}`}>
           <a>
             <img src={imagen.url} width="250" height="200" />
           </a>
@@ -18,7 +18,7 @@ export const BlogCard = (blog) => {
             ? `${RichText.asText(descripcion).substr(0, 380)}...`
             : RichText.asText(descripcion)}
         </p>
-        <NextLink href={encodeBlog(titulo1)}>
+        <NextLink href={`blog/detalle/${encodeBlog(titulo1)}`}>
           <a>
             <button
               type="button"
