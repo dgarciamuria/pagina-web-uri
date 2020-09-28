@@ -1,7 +1,12 @@
 import { RichText, Link } from "prismic-reactjs";
+import NextLink from "next/link";
+import { BlogCard } from "./BlogCard";
 
-export const Novedades = ({ publicidad = [] }) => {
-  const publicidadSections = Array(Math.ceil(publicidad.length / 3)).fill(1);
+export const Novedades = ({ blogs = [], videos = [] }) => {
+  const blogEntries = blogs.map((blog) => ({ ...blog, type: "blog" }));
+  const videoEntries = videos.map((video) => ({ ...video, type: "video" }));
+  const combined = [...blogEntries, ...videoEntries];
+  const newsSections = Array(Math.ceil(combined.length / 3)).fill(1);
   return (
     <div className="container text-center my-3">
       <div className="row mx-auto my-auto">
@@ -11,7 +16,7 @@ export const Novedades = ({ publicidad = [] }) => {
           data-ride="carousel"
         >
           <div className="carousel-inner" role="listbox">
-            {publicidadSections.map((_, offset) => {
+            {newsSections.map((_, offset) => {
               return (
                 <div
                   key={`${offset}`}
@@ -20,9 +25,9 @@ export const Novedades = ({ publicidad = [] }) => {
                   }`}
                 >
                   <div className="row">
-                    {publicidad
+                    {combined
                       .slice(offset * 3, offset * 3 + 3)
-                      .map(({ imagen, titulo, descripcion, link }, idx) => {
+                      .map((element, idx) => {
                         let cardId = undefined;
                         if (idx === 0) {
                           cardId = "card-1";
@@ -37,40 +42,9 @@ export const Novedades = ({ publicidad = [] }) => {
                             id={cardId}
                             className="col-sm-4"
                           >
-                            <div className="card">
-                              <div className="card-body">
-                                <a href={Link.url(link)}>
-                                  <img
-                                    src={imagen.url}
-                                    width="250"
-                                    height="200"
-                                  />
-                                </a>
-                                <h4 className="card-body--titulo">
-                                  {RichText.asText(titulo)}
-                                </h4>
-                                <p className="card-body--texto">
-                                  {RichText.asText(descripcion).length > 450
-                                    ? `${RichText.asText(descripcion).substr(
-                                        0,
-                                        450
-                                      )}...`
-                                    : RichText.asText(descripcion)}
-                                </p>
-                                {Link.url(link) ? (
-                                  <a href={Link.url(link)} target="_blank">
-                                    <button
-                                      type="button"
-                                      id="boton-leer-mas"
-                                      className="btn btn-danger"
-                                      data-dismiss="modal"
-                                    >
-                                      Leer mas
-                                    </button>
-                                  </a>
-                                ) : null}
-                              </div>
-                            </div>
+                            {element.type === "blog" ? (
+                              <BlogCard blog={element} />
+                            ) : null}
                           </div>
                         );
                         return card;
@@ -81,7 +55,7 @@ export const Novedades = ({ publicidad = [] }) => {
             })}
 
             <ol className="carousel-indicators">
-              {publicidadSections.map((_, idx) => (
+              {newsSections.map((_, idx) => (
                 <li
                   key={`${idx}`}
                   data-target="#myCarousel"

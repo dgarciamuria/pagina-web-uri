@@ -4,10 +4,7 @@ import { extractSliceData } from "../src/utils";
 import { Footer } from "../src/Footer";
 import { Novedades } from "../src/Novedades";
 
-const Index = ({ page }) => {
-  const { data } = page;
-  const publicidad = extractSliceData(data, "publicidad");
-
+const Index = ({ latestPosts, latestVideos }) => {
   return (
     <div className="grid">
       <section>
@@ -120,7 +117,7 @@ const Index = ({ page }) => {
 
         <h2 className="h2-index">Novedades</h2>
 
-        <Novedades publicidad={publicidad} />
+        <Novedades blogs={latestPosts} videos={latestVideos} />
       </section>
       <Footer />
     </div>
@@ -130,10 +127,17 @@ const Index = ({ page }) => {
 export default Index;
 
 export const getStaticProps = async () => {
-  const page = await Client().getSingle("home_page");
+  const blogPage = await Client().getSingle("blog");
+  const { data: blogData } = blogPage;
+  const latestPosts = extractSliceData(blogData, "posteos").slice(0, 3);
+  const videoPage = await Client().getSingle("videos");
+  const { data: videoData } = videoPage;
+  const latestVideos = extractSliceData(videoData, "videos").slice(0, 3);
+
   return {
     props: {
-      page,
+      latestPosts,
+      latestVideos,
     },
     revalidate: 30,
   };
