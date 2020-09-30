@@ -130,7 +130,7 @@ export const getStaticPaths = async () => {
   }
   return {
     paths: posteos.map((_, idx) => ({ params: { page: `${idx}` } })),
-    fallback: false,
+    fallback: true,
   };
 };
 

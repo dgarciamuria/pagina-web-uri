@@ -1,9 +1,13 @@
+import Link from "next/link";
+
 export const Footer = () => (
   <footer className="footer-content">
     <div className="footer-content-info">
-      <a id="footer-content-info--logo" href="index.html">
-        <strong>U</strong>ri<strong>V</strong>ida
-      </a>
+      <Link href="/">
+        <a id="footer-content-info--logo">
+          <strong>U</strong>ri<strong>V</strong>ida
+        </a>
+      </Link>
       <h5 className="footer-content-info--contacto">
         Contacto<a name="contacto" id="contacto"></a>
       </h5>
