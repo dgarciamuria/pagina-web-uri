@@ -11,6 +11,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <title>UriVida</title>
           <meta
             name="description"
             content="Un espacio en el que encontrarás consejos y artículos para cuidar de tu salud y la de los tuyos."
@@ -24,7 +25,7 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
             integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-            crossorigin="anonymous"
+            crossOrigin="anonymous"
           ></link>
           <link rel="apple-touch-icon" sizes="180x180" href="/" />
           <link
@@ -39,10 +40,9 @@ class MyDocument extends Document {
             sizes="16x16"
             href="/favicon-16x16.png"
           />
-          <link rel="manifest" href="site.webmanifest"></link>
           <script
             src="https://kit.fontawesome.com/7a5f78019b.js"
-            crossorigin="anonymous"
+            crossOrigin="anonymous"
           ></script>
           <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
         </Head>

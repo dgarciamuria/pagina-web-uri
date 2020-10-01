@@ -51,13 +51,12 @@ const Page = ({ post, anuncios }) => {
           </a>
         </div> */}
           <center>
-            <a onClick={() => router.back()}>
-              <input
-                className="articulos__boton--volver"
-                type="button"
-                value="Volver a página anterior"
-              />
-            </a>
+            <input
+              onClick={() => router.back()}
+              className="articulos__boton--volver"
+              type="button"
+              value="Volver a página anterior"
+            />
           </center>
         </div>
 
