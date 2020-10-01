@@ -7,7 +7,13 @@ import Link from "next/link";
 import { Anuncios } from "../../src/Anuncios";
 import Head from "next/head";
 
-const Page = ({ posteos, hasNext, hasPrev, currentPage, anuncios }) => {
+const Page = ({
+  posteos = [],
+  hasNext,
+  hasPrev,
+  currentPage,
+  anuncios = [],
+}) => {
   return (
     <div className="grid">
       <Head>
