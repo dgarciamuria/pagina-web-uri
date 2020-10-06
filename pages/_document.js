@@ -11,7 +11,6 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <title>UriVida</title>
           <meta
             name="description"
             content="Un espacio en el que encontrarás consejos y artículos para cuidar de tu salud y la de los tuyos."

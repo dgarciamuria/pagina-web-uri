@@ -8,6 +8,9 @@ import { Anuncios } from "../../../src/Anuncios";
 
 const Page = ({ post, anuncios }) => {
   const router = useRouter();
+  if (!post) {
+    return null;
+  }
   return (
     <div className="grid">
       <Head>
@@ -88,7 +91,7 @@ export const getStaticPaths = async () => {
         },
       };
     }),
-    fallback: false,
+    fallback: true,
   };
 };
 
@@ -99,9 +102,8 @@ export const getStaticProps = async ({ params = {} }) => {
   const page = await Client().getSingle("blog");
   const { data } = page;
   const allPosts = extractSliceData(data, "posteos");
-  console.log(name);
-  const post = allPosts.find(
-    (post) => encodeBlog(post.titulo1) === encodeString(name)
+  const post = allPosts.find((post) =>
+    encodeBlog(post.titulo1).includes(encodeString(name))
   );
 
   return {
