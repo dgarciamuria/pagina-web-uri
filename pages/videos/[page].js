@@ -110,7 +110,7 @@ export const getStaticProps = async ({ params = {} }) => {
   const page = await Client().getSingle("videos");
   const { data } = page;
   const currentPage = parseInt(pageOffset);
-  const allVideos = extractSliceData(data, "videos");
+  const allVideos = extractSliceData(data, "videos").reverse();
   const videos = allVideos.slice(pageOffset, 3);
   const hasNext = !!allVideos[currentPage + 4];
   const hasPrev = pageOffset > 0;

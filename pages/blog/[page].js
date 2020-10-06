@@ -148,7 +148,7 @@ export const getStaticProps = async ({ params = {} }) => {
   const { data } = page;
   const currentPage = parseInt(pageOffset);
   const offset = currentPage * 5;
-  const allPosts = extractSliceData(data, "posteos");
+  const allPosts = extractSliceData(data, "posteos").reverse();
   const posteos = allPosts.slice(offset, offset + 5);
   const hasNext = !!allPosts[offset + 6];
   const hasPrev = pageOffset > 0;

@@ -155,10 +155,14 @@ const Page = ({ anuncios, latestPosts, latestVideos }) => (
 export const getStaticProps = async () => {
   const blogPage = await Client().getSingle("blog");
   const { data: blogData } = blogPage;
-  const latestPosts = extractSliceData(blogData, "posteos").slice(0, 3);
+  const latestPosts = extractSliceData(blogData, "posteos")
+    .reverse()
+    .slice(0, 3);
   const videoPage = await Client().getSingle("videos");
   const { data: videoData } = videoPage;
-  const latestVideos = extractSliceData(videoData, "videos").slice(0, 3);
+  const latestVideos = extractSliceData(videoData, "videos")
+    .reverse()
+    .slice(0, 3);
   const page = await Client().getSingle("anuncios");
   const anuncios = extractSliceData(page.data, "anuncios");
   return {
